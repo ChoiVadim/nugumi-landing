@@ -1,6 +1,6 @@
-# Yaku Landing
+# Nugumi Landing
 
-Standalone landing page for the Yaku macOS translator app.
+Standalone landing page for Nugumi.
 
 ## Local Development
 

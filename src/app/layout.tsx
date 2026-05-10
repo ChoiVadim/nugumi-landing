@@ -13,8 +13,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Yaku - Mac Translator",
-  description: "Download the Yaku macOS translator app.",
+  title: "Nugumi - Local-first Mac AI",
+  description:
+    "A local-first AI language assistant for non-native professionals on macOS.",
+  icons: {
+    icon: "/app-icon.png",
+    shortcut: "/app-icon.png",
+    apple: "/app-icon.png",
+  },
 };
 
 export default function RootLayout({
