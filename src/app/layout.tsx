@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Nugumi - Local-first Mac AI",
   description:
-    "A local-first AI language assistant for non-native professionals on macOS.",
+    "Instant AI actions on selected text everywhere you work on macOS.",
   icons: {
     icon: "/app-icon.png",
     shortcut: "/app-icon.png",

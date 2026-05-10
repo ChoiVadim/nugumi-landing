@@ -2,6 +2,7 @@ import Image from "next/image";
 import { DownloadSimple, PlayCircle } from "@phosphor-icons/react/dist/ssr";
 
 const YOUTUBE_EMBED_URL = "";
+const actions = ["Translate", "Make native", "Reply"];
 
 export default function Home() {
   return (
@@ -15,13 +16,20 @@ export default function Home() {
 
       <section id="top" className="hero-section">
         <div className="hero-copy">
-          <p className="eyebrow">Local-first Mac AI</p>
-          <h1>Write and respond like a native, anywhere on your Mac.</h1>
+          <p className="eyebrow">No copy-paste. No prompt loop.</p>
+          <h1>Instant AI actions on selected text.</h1>
           <p className="lede">
-            Nugumi is a local-first AI language assistant for non-native
-            professionals. Select text anywhere, then translate, make it native,
-            or reply in-place.
+            Nugumi brings AI help to the apps where work happens: Slack, Gmail,
+            Telegram, Notion, browsers, PDFs, and CRMs. Highlight anything, hit
+            a shortcut, then translate, make it native, shorten, or reply
+            in-place.
           </p>
+
+          <div className="action-list" aria-label="Core Nugumi actions">
+            {actions.map((action) => (
+              <span key={action}>{action}</span>
+            ))}
+          </div>
 
           <a className="download-button" href="/download">
             <DownloadSimple size={20} weight="bold" aria-hidden="true" />
