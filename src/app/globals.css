@@ -124,18 +124,22 @@ h1 {
   font-weight: 720;
 }
 
-.download-button {
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.download-button,
+.repo-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
   min-height: 56px;
-  margin-top: 30px;
   padding: 0 24px;
   border-radius: 999px;
-  background: var(--accent);
-  color: #ffffff;
-  box-shadow: 0 16px 34px rgba(15, 118, 110, 0.22);
   font-size: 16px;
   font-weight: 760;
   transition:
@@ -144,12 +148,31 @@ h1 {
     box-shadow 160ms ease;
 }
 
+.download-button {
+  background: var(--accent);
+  color: #ffffff;
+  box-shadow: 0 16px 34px rgba(15, 118, 110, 0.22);
+}
+
 .download-button:hover {
   background: var(--accent-strong);
   box-shadow: 0 18px 42px rgba(15, 118, 110, 0.28);
 }
 
-.download-button:active {
+.repo-button {
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.64);
+  color: var(--foreground);
+}
+
+.repo-button:hover {
+  border-color: #d3cbbd;
+  background: #ffffff;
+  box-shadow: 0 14px 30px rgba(24, 22, 18, 0.08);
+}
+
+.download-button:active,
+.repo-button:active {
   transform: translateY(1px) scale(0.99);
 }
 
@@ -221,7 +244,12 @@ h1 {
     font-size: clamp(46px, 14vw, 64px);
   }
 
-  .download-button {
+  .cta-row {
+    display: grid;
+  }
+
+  .download-button,
+  .repo-button {
     width: 100%;
   }
 

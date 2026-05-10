@@ -1,5 +1,9 @@
 import Image from "next/image";
-import { DownloadSimple, PlayCircle } from "@phosphor-icons/react/dist/ssr";
+import {
+  DownloadSimple,
+  GithubLogo,
+  PlayCircle,
+} from "@phosphor-icons/react/dist/ssr";
 
 const YOUTUBE_EMBED_URL = "";
 const actions = ["Translate", "Make native", "Reply"];
@@ -31,10 +35,21 @@ export default function Home() {
             ))}
           </div>
 
-          <a className="download-button" href="/download">
-            <DownloadSimple size={20} weight="bold" aria-hidden="true" />
-            <span>Download Nugumi for macOS</span>
-          </a>
+          <div className="cta-row">
+            <a className="download-button" href="/download">
+              <DownloadSimple size={20} weight="bold" aria-hidden="true" />
+              <span>Download Nugumi for macOS</span>
+            </a>
+            <a
+              className="repo-button"
+              href="https://github.com/ChoiVadim/nugumi"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <GithubLogo size={20} weight="bold" aria-hidden="true" />
+              <span>GitHub repo</span>
+            </a>
+          </div>
           <p className="download-note">Latest GitHub release, macOS 14 or newer.</p>
         </div>
 
