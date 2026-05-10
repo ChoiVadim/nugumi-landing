@@ -1,65 +1,66 @@
 import Image from "next/image";
+import { DownloadSimple } from "@phosphor-icons/react/dist/ssr";
+
+const appDetails = [
+  ["Selected text", "Translate text from any Mac app"],
+  ["Screenshots", "Capture an area and translate recognized text"],
+  ["macOS", "Built for macOS 14 and newer"],
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main className="site-shell">
+      <nav className="topbar" aria-label="Main navigation">
+        <a className="brand-lockup" href="#top" aria-label="Yaku home">
+          <Image src="/app-icon.png" alt="" width={36} height={36} priority />
+          <span>Yaku</span>
+        </a>
+      </nav>
+
+      <section id="top" className="hero-section">
+        <div className="hero-copy">
+          <p className="eyebrow">Mac translation app</p>
+          <h1>Translate selected text and screenshots without leaving flow.</h1>
+          <p className="lede">
+            Yaku lives in your macOS menu bar and gives you fast translation
+            from selected text or a captured screen area.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
+          <a className="download-button" href="/download">
+            <DownloadSimple size={20} weight="bold" aria-hidden="true" />
+            <span>Download Yaku for macOS</span>
           </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          <p className="download-note">Latest GitHub release, macOS 14 or newer.</p>
         </div>
-      </main>
-    </div>
+
+        <div className="product-visual" aria-label="Yaku app preview">
+          <div className="visual-header">
+            <Image src="/app-icon.png" alt="" width={52} height={52} priority />
+            <div>
+              <span>Yaku</span>
+              <strong>Ready in the menu bar</strong>
+            </div>
+          </div>
+          <div className="visual-card">
+            <span className="status-dot" />
+            <p>Screenshot text captured</p>
+            <strong>Ready to translate</strong>
+          </div>
+          <div className="visual-lines" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+          </div>
+        </div>
+      </section>
+
+      <section className="details-section" aria-label="Yaku details">
+        {appDetails.map(([label, detail]) => (
+          <div className="detail-row" key={label}>
+            <span>{label}</span>
+            <p>{detail}</p>
+          </div>
+        ))}
+      </section>
+    </main>
   );
 }
