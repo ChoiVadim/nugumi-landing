@@ -10,14 +10,14 @@ type GitHubRelease = {
   html_url?: string;
 };
 
-const RELEASES_URL = "https://github.com/ChoiVadim/yaku/releases/latest";
-const LATEST_RELEASE_API = "https://api.github.com/repos/ChoiVadim/yaku/releases/latest";
+const RELEASES_URL = "https://github.com/ChoiVadim/nugumi/releases/latest";
+const LATEST_RELEASE_API = "https://api.github.com/repos/ChoiVadim/nugumi/releases/latest";
 
 export async function GET() {
   const releaseResponse = await fetch(LATEST_RELEASE_API, {
     headers: {
       Accept: "application/vnd.github+json",
-      "User-Agent": "yaku-landing",
+      "User-Agent": "nugumi-landing",
     },
     next: { revalidate: 300 },
   });

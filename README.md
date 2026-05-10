@@ -15,7 +15,7 @@ Open `http://localhost:3000`.
 
 The main button points to `/download`.
 
-That route fetches the latest GitHub release from `ChoiVadim/yaku`, finds the
+That route fetches the latest GitHub release from `ChoiVadim/nugumi`, finds the
 first `.dmg` asset, and redirects to the GitHub download URL. This keeps the
 landing repo independent from installer binaries.
 
