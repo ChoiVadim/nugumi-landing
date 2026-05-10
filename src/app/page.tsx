@@ -30,11 +30,11 @@ export default function Home() {
           <p className="download-note">Latest GitHub release, macOS 14 or newer.</p>
         </div>
 
-        <div className="video-shell" aria-label="Yaku demo video">
+        <div className="video-shell" aria-label="Nugumi demo video">
           {YOUTUBE_EMBED_URL ? (
             <iframe
               src={YOUTUBE_EMBED_URL}
-              title="Yaku demo video"
+              title="Nugumi demo video"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerPolicy="strict-origin-when-cross-origin"
               allowFullScreen
