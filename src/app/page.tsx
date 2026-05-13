@@ -31,8 +31,8 @@ const features = [
   },
   {
     eyebrow: "Make native",
-    title: "Your draft, before you send it.",
-    body: "You've been pasting every Slack message into ChatGPT before sending. Stop. Select your draft, right-click, done. Nugumi rewrites it to sound natural in the target language, fixes grammar and tone, applies your formatting and saved snippets. Sounds like you, just sharper.",
+    title: "Your draft. In your target language.",
+    body: "Pick a target language once in settings. From then on, right-click any selection and Nugumi delivers it in the target. Wrote in your native language? It translates to the target. Wrote in the target already? It polishes the draft: grammar, tone, idiom, formatting, snippets. Same click, both directions. No keyboard switching, no ChatGPT tab.",
     image: "/pet.png",
     video: "https://df41nzkzrv2ws.cloudfront.net/nugumi/make-native.mp4",
     poster:
@@ -80,7 +80,7 @@ const faqs = [
   },
   {
     q: "How do I pick which action runs?",
-    a: "Left-click runs translate, the fastest and most common case. Right-click polishes the text you wrote yourself: grammar, tone, idiom, formatting, snippets. Both clicks act directly. There's no dropdown to pick from. Nugumi knows what to do based on what you selected and the app you're in.",
+    a: "Both clicks are translators. They just go to different languages. Left-click translates to your native language. Right-click translates to your target language (the one you set in preferences). If your selection is already in the destination language, the click switches mode: left explains jargon in plain words, right polishes grammar, tone, and snippets. Same gesture, different direction, no dropdowns.",
   },
   {
     q: "Where does it run?",
@@ -255,19 +255,20 @@ export default function Home() {
           </li>
           <li>
             <span className="step-num">2</span>
-            <h3>Left-click translates.</h3>
+            <h3>Left-click → your language.</h3>
             <p>
-              Foreign text becomes your language. Same-language jargon becomes
-              plain words. The result appears right next to your selection.
+              Translates the selection into the language you set as native. If
+              it&apos;s already in your language, Nugumi explains the jargon in
+              plain words instead.
             </p>
           </li>
           <li>
             <span className="step-num">3</span>
-            <h3>Right-click polishes your draft.</h3>
+            <h3>Right-click → your target language.</h3>
             <p>
-              Wrote something yourself? Right-click fixes grammar, tone, and
-              idiom. Applies your formatting and snippets. No menu, no waiting.
-              Just done.
+              Translates the selection into the language you set as target. If
+              it&apos;s already in the target, Nugumi polishes it instead:
+              grammar, tone, idiom, snippets.
             </p>
           </li>
         </ol>
