@@ -11,31 +11,41 @@ import {
 const heroActions = ["Translate", "Make native", "Reply", "Read screen"];
 
 const stats = [
-  { value: "3", label: "core actions, all from your selection." },
-  { value: "<1 s", label: "to first word. streams as the model types." },
-  { value: "1 click", label: "for the action you needed." },
+  { value: "1 click", label: "every text action, every Mac app." },
+  { value: "0.5 s", label: "answers, before you blink." },
+  {
+    value: "Auto",
+    label: "tunes to your app, your language, your style.",
+  },
 ];
 
 const features = [
   {
     eyebrow: "Translate",
     title: "Select. Left-click. Read.",
-    body: "The fastest path from foreign text to understanding. Highlight a chat, a PDF, a webpage, a code comment. Left-click the Nugumi button and the translation appears next to your selection. Same-language jargon? Same flow: Nugumi rewrites it in plain words instead. Optional local mode keeps sensitive business text on your Mac.",
+    body: "Highlight any text. Left-click. Read it in your language. If the text is already in your language, jargon gets rewritten in plain words. Works in every Mac app: chat, mail, PDFs, code, Notion, Safari. Optional local mode keeps sensitive text on your Mac.",
     image: "/translate.png",
-    alt: "Nugumi translating a Korean Telegram message in place",
+    video: "https://df41nzkzrv2ws.cloudfront.net/nugumi/translate.mp4",
+    poster: "https://df41nzkzrv2ws.cloudfront.net/nugumi/translate-poster.jpg",
+    alt: "Nugumi translating selected text in place",
   },
   {
     eyebrow: "Make native",
     title: "Your draft, before you send it.",
     body: "You've been pasting every Slack message into ChatGPT before sending. Stop. Select your draft, right-click, done. Nugumi rewrites it to sound natural in the target language, fixes grammar and tone, applies your formatting and saved snippets. Sounds like you, just sharper.",
     image: "/pet.png",
-    alt: "Nugumi polishing a draft message right next to it",
+    video: "https://df41nzkzrv2ws.cloudfront.net/nugumi/make-native.mp4",
+    poster:
+      "https://df41nzkzrv2ws.cloudfront.net/nugumi/make-native-poster.jpg",
+    alt: "Nugumi polishing a selected draft into native-sounding text",
   },
   {
     eyebrow: "Reply",
     title: "Hand it over. Get a full reply back.",
-    body: "Sometimes you don't want help with your draft. You want the AI to write the whole thing. Select an incoming message, a form question, an exam prompt. Nugumi writes the full reply, in your style, with your snippets and dictionaries. Edit, then paste.",
+    body: "Sometimes you don't want help with your draft. You want the AI to write the whole thing. Select an incoming message, a form question, an exam prompt. Nugumi writes the full reply, in your style, with your snippets and dictionaries. Edit, then paste. (And yes: that exam question on your screen? Highlight it. Nugumi answers it. We won't tell.)",
     image: "/reply.png",
+    video: "https://df41nzkzrv2ws.cloudfront.net/nugumi/reply.mp4",
+    poster: "https://df41nzkzrv2ws.cloudfront.net/nugumi/reply-poster.jpg",
     alt: "Nugumi generating a full reply from a selected incoming message",
   },
 ];
@@ -43,8 +53,8 @@ const features = [
 const valueProps = [
   {
     icon: CursorClick,
-    title: "One button, every action.",
-    body: "Left-click runs translate, the most common case. Right-click opens the action menu next to your selection: make native, reply, shorten, read aloud. No app to switch to. No prompt to type. No mode to pre-pick.",
+    title: "Reads the context.",
+    body: "Nugumi sees which app you're in, which language you selected, and the style you write in. The same word in Mail gets a formal answer. In Slack, it stays casual. In a code editor, it gets a developer's explanation. Foreign text gets translated, same-language jargon gets explained in plain words.",
   },
   {
     icon: AppWindow,
@@ -70,7 +80,7 @@ const faqs = [
   },
   {
     q: "How do I pick which action runs?",
-    a: "Left-click runs translate. That's the fastest and most common case. Right-click opens the action menu next to your selection: make native, reply, shorten, read aloud. You don't retype the same prompt every time and you don't switch to a different app. The choice happens right at your cursor.",
+    a: "Left-click runs translate, the fastest and most common case. Right-click polishes the text you wrote yourself: grammar, tone, idiom, formatting, snippets. Both clicks act directly. There's no dropdown to pick from. Nugumi knows what to do based on what you selected and the app you're in.",
   },
   {
     q: "Where does it run?",
@@ -183,13 +193,27 @@ export default function Home() {
               <p>{f.body}</p>
             </div>
             <figure className="feature-shot">
-              <Image
-                src={f.image}
-                alt={f.alt}
-                width={2000}
-                height={1300}
-                sizes="(max-width: 920px) 92vw, 620px"
-              />
+              {"video" in f && f.video ? (
+                <video
+                  className="feature-video"
+                  src={f.video}
+                  poster={f.poster}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  aria-label={f.alt}
+                />
+              ) : (
+                <Image
+                  src={f.image}
+                  alt={f.alt}
+                  width={2000}
+                  height={1300}
+                  sizes="(max-width: 920px) 92vw, 620px"
+                />
+              )}
             </figure>
           </article>
         ))}
@@ -231,18 +255,19 @@ export default function Home() {
           </li>
           <li>
             <span className="step-num">2</span>
-            <h3>Left-click for the fast path.</h3>
+            <h3>Left-click translates.</h3>
             <p>
-              Translates foreign text. Explains same-language jargon in plain
-              words. The result appears next to your selection.
+              Foreign text becomes your language. Same-language jargon becomes
+              plain words. The result appears right next to your selection.
             </p>
           </li>
           <li>
             <span className="step-num">3</span>
-            <h3>Right-click for the menu.</h3>
+            <h3>Right-click polishes your draft.</h3>
             <p>
-              Make native, reply, shorten, read aloud. Pick the action, get the
-              result, paste back. Your snippets and styles included.
+              Wrote something yourself? Right-click fixes grammar, tone, and
+              idiom. Applies your formatting and snippets. No menu, no waiting.
+              Just done.
             </p>
           </li>
         </ol>
@@ -264,7 +289,10 @@ export default function Home() {
         <h2>
           AI actions, <em>where you already are</em>.
         </h2>
-        <p>Free, open source, signed end-to-end. Made with 🩷 in Seoul.</p>
+        <p>
+          Free, no signup, no account. Try it on your next foreign chat, your
+          next sloppy draft, your next unread reply.
+        </p>
         <div className="hero-cta">
           <a className="btn btn-primary" href="/download">
             <DownloadSimple size={20} weight="bold" aria-hidden="true" />
