@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, EB_Garamond } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -12,10 +12,17 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const ebGaramond = EB_Garamond({
+  variable: "--font-serif",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+});
+
 export const metadata: Metadata = {
-  title: "Nugumi - Local-first Mac AI",
+  title: "Nugumi · Instant AI actions on selected text",
   description:
-    "Instant AI actions on selected text everywhere you work on macOS.",
+    "Select any text in any Mac app and Nugumi delivers the action you needed: translate, make native, reply. No mode picker. No copy-paste loop. Optional local mode via Ollama. Free and open source.",
   icons: {
     icon: "/app-icon.png",
     shortcut: "/app-icon.png",
@@ -29,7 +36,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} ${ebGaramond.variable}`}
+    >
       <body>{children}</body>
     </html>
   );
