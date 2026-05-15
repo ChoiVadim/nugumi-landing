@@ -20,9 +20,9 @@ const ebGaramond = EB_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "Nugumi · Instant AI actions on selected text",
+  title: "Nugumi · Understand and reply in any language on Mac",
   description:
-    "Select any text in any Mac app and Nugumi delivers the action you needed: translate, make native, reply. No mode picker. No copy-paste loop. Optional local mode via Ollama. Free and open source.",
+    "Select text in Slack, Gmail, Notion, GitHub, PDFs, or any Mac app. Nugumi translates it, rewrites your draft to sound native, or drafts a reply — without switching apps.",
   icons: {
     icon: "/app-icon.png",
     shortcut: "/app-icon.png",
