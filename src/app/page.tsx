@@ -6,7 +6,6 @@ import {
   Lightning,
   CursorClick,
   NavigationArrow,
-  Eye,
 } from "@phosphor-icons/react/dist/ssr";
 
 const heroActions = [
@@ -59,6 +58,8 @@ const features = [
     title: "Stuck on a foreign website? Ask what to click.",
     body: "Press Control twice and ask Nugumi about what's on your screen. It can explain a foreign-language website, form, dialog, or app — and point to the button, field, or menu item you need. For when translation is not enough and you need to know what to do next.",
     image: "/pet.png",
+    video: "https://df41nzkzrv2ws.cloudfront.net/nugumi/demo.mp4",
+    poster: "https://df41nzkzrv2ws.cloudfront.net/nugumi/demo-poster.jpg",
     alt: "Nugumi reading a foreign-language website and pointing where to click",
   },
 ];
@@ -143,13 +144,13 @@ export default function Home() {
       <section id="top" className="hero">
         <p className="eyebrow">For global workers on Mac</p>
         <h1 className="hero-title">
-          Understand any language. <em>Know what to do next</em>.
+          Stop being lost <em>in someone else&apos;s language</em>.
         </h1>
         <p className="hero-lede">
-          Nugumi is an AI layer over your Mac for non-native speakers. Translate
-          selected text, rewrite drafts to sound native, draft replies, or ask
-          Nugumi where to click on a foreign-language website — without
-          switching apps.
+          Select any text on your Mac and Nugumi translates it, rewrites your
+          reply to sound native, or shows you exactly where to click — on any
+          foreign-language site, app, or dialog. Right where you&apos;re
+          working.
         </p>
 
         <div className="hero-cta">
@@ -192,44 +193,6 @@ export default function Home() {
             <span className="stat-label">{s.label}</span>
           </div>
         ))}
-      </section>
-
-      <section className="screen-guide">
-        <div className="screen-guide-copy">
-          <p className="eyebrow">Ask Nugumi</p>
-          <h2>Stuck on a foreign website?</h2>
-          <p>
-            Press Control twice and ask what the screen means. Nugumi can read a
-            form, dialog, checkout, visa page, bank portal, or app setting —
-            then point you toward the button or field you need.
-          </p>
-          <div
-            className="prompt-cards"
-            aria-label="Example Ask Nugumi questions"
-          >
-            <div className="prompt-card prompt-card-main">
-              <Eye size={22} weight="duotone" aria-hidden="true" />
-              <span>Where do I click to submit this application?</span>
-            </div>
-            <div className="prompt-card">What does this warning mean?</div>
-            <div className="prompt-card">Which field is missing?</div>
-            <div className="prompt-card">Is this asking me to pay?</div>
-            <div className="prompt-card">What should I do next?</div>
-          </div>
-        </div>
-        <figure className="screen-guide-shot">
-          <video
-            className="screen-guide-video"
-            src="https://df41nzkzrv2ws.cloudfront.net/nugumi/demo.mp4"
-            poster="https://df41nzkzrv2ws.cloudfront.net/nugumi/demo-poster.jpg"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            aria-label="Nugumi reading a screen and pointing to the next step"
-          />
-        </figure>
       </section>
 
       <section id="features" className="features">
