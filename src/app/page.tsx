@@ -9,7 +9,12 @@ import {
   Eye,
 } from "@phosphor-icons/react/dist/ssr";
 
-const heroActions = ["Understand", "Sound native", "Reply", "Know where to click"];
+const heroActions = [
+  "Understand",
+  "Sound native",
+  "Reply",
+  "Know where to click",
+];
 
 const stats = [
   { value: "1 click", label: "to read, write, or ask your screen." },
@@ -168,8 +173,8 @@ export default function Home() {
         <figure className="hero-shot">
           <video
             className="hero-video"
-            src="https://df41nzkzrv2ws.cloudfront.net/nugumi/hero.mp4"
-            poster="https://df41nzkzrv2ws.cloudfront.net/nugumi/hero-poster.jpg"
+            src="https://df41nzkzrv2ws.cloudfront.net/nugumi/demo.mp4"
+            poster="https://df41nzkzrv2ws.cloudfront.net/nugumi/demo-poster.jpg"
             autoPlay
             muted
             loop
@@ -195,20 +200,36 @@ export default function Home() {
           <h2>Stuck on a foreign website?</h2>
           <p>
             Press Control twice and ask what the screen means. Nugumi can read a
-            form, dialog, checkout, visa page, bank portal, or app setting — then
-            point you toward the button or field you need.
+            form, dialog, checkout, visa page, bank portal, or app setting —
+            then point you toward the button or field you need.
           </p>
-        </div>
-        <div className="prompt-cards" aria-label="Example Ask Nugumi questions">
-          <div className="prompt-card prompt-card-main">
-            <Eye size={22} weight="duotone" aria-hidden="true" />
-            <span>Where do I click to submit this application?</span>
+          <div
+            className="prompt-cards"
+            aria-label="Example Ask Nugumi questions"
+          >
+            <div className="prompt-card prompt-card-main">
+              <Eye size={22} weight="duotone" aria-hidden="true" />
+              <span>Where do I click to submit this application?</span>
+            </div>
+            <div className="prompt-card">What does this warning mean?</div>
+            <div className="prompt-card">Which field is missing?</div>
+            <div className="prompt-card">Is this asking me to pay?</div>
+            <div className="prompt-card">What should I do next?</div>
           </div>
-          <div className="prompt-card">What does this warning mean?</div>
-          <div className="prompt-card">Which field is missing?</div>
-          <div className="prompt-card">Is this asking me to pay?</div>
-          <div className="prompt-card">What should I do next?</div>
         </div>
+        <figure className="screen-guide-shot">
+          <video
+            className="screen-guide-video"
+            src="https://df41nzkzrv2ws.cloudfront.net/nugumi/demo.mp4"
+            poster="https://df41nzkzrv2ws.cloudfront.net/nugumi/demo-poster.jpg"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-label="Nugumi reading a screen and pointing to the next step"
+          />
+        </figure>
       </section>
 
       <section id="features" className="features">
