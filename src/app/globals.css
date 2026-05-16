@@ -419,11 +419,11 @@ h3 {
 
 .feature-eyebrow {
   display: inline-block;
-  margin: 0 0 16px;
-  padding: 4px 12px;
+  margin: 0 0 24px;
+  padding: 5px 13px;
   border-radius: var(--radius-pill);
-  background: var(--moss-soft);
-  color: var(--moss-strong);
+  background: rgba(15, 118, 110, 0.1);
+  color: var(--moss);
   font-family: var(--font-geist-mono), monospace;
   font-size: 11.5px;
   font-weight: 600;

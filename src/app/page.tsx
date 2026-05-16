@@ -1,7 +1,6 @@
 import Image from "next/image";
 import {
   DownloadSimple,
-  GithubLogo,
   Lock,
   AppWindow,
   Lightning,
@@ -92,7 +91,7 @@ const faqs = [
   },
   {
     q: "Is Nugumi free?",
-    a: "Yes. It's open source on GitHub and free to download.",
+    a: "Yes. It's free to download, no signup, no account.",
   },
 ];
 
@@ -108,13 +107,8 @@ export default function Home() {
           <a href="#features">Actions</a>
           <a href="#why">Approach</a>
           <a href="#faq">FAQ</a>
-          <a
-            className="topnav-cta"
-            href="https://github.com/ChoiVadim/nugumi"
-            target="_blank"
-            rel="noreferrer"
-          >
-            GitHub
+          <a className="topnav-cta" href="/download">
+            Download
           </a>
         </nav>
       </header>
@@ -134,15 +128,6 @@ export default function Home() {
           <a className="btn btn-primary" href="/download">
             <DownloadSimple size={20} weight="bold" aria-hidden="true" />
             <span>Download for macOS</span>
-          </a>
-          <a
-            className="btn btn-ghost"
-            href="https://github.com/ChoiVadim/nugumi"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <GithubLogo size={20} weight="bold" aria-hidden="true" />
-            <span>Star on GitHub</span>
           </a>
         </div>
         <p className="hero-meta">
@@ -299,15 +284,6 @@ export default function Home() {
             <DownloadSimple size={20} weight="bold" aria-hidden="true" />
             <span>Download Nugumi</span>
           </a>
-          <a
-            className="btn btn-ghost btn-ghost-dark"
-            href="https://github.com/ChoiVadim/nugumi"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <GithubLogo size={20} weight="bold" aria-hidden="true" />
-            <span>GitHub</span>
-          </a>
         </div>
       </section>
 
@@ -317,20 +293,7 @@ export default function Home() {
           <span>Nugumi</span>
         </div>
         <div className="footer-links">
-          <a
-            href="https://github.com/ChoiVadim/nugumi"
-            target="_blank"
-            rel="noreferrer"
-          >
-            GitHub
-          </a>
-          <a
-            href="https://github.com/ChoiVadim/nugumi/releases/latest"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Releases
-          </a>
+          <a href="/download">Download</a>
           <a href="https://ollama.com" target="_blank" rel="noreferrer">
             Powered by Ollama
           </a>
