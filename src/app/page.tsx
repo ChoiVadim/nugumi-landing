@@ -5,13 +5,15 @@ import {
   AppWindow,
   Lightning,
   CursorClick,
+  NavigationArrow,
+  Eye,
 } from "@phosphor-icons/react/dist/ssr";
 
-const heroActions = ["Understand", "Sound native", "Reply", "Translate"];
+const heroActions = ["Understand", "Sound native", "Reply", "Know where to click"];
 
 const stats = [
-  { value: "1 click", label: "to read or write across languages." },
-  { value: "Any app", label: "Slack, Gmail, Notion, GitHub, PDFs." },
+  { value: "1 click", label: "to read, write, or ask your screen." },
+  { value: "Any app", label: "Slack, Gmail, Notion, GitHub, PDFs, websites." },
   {
     value: "Local mode",
     label: "for private messages and sensitive work.",
@@ -47,6 +49,13 @@ const features = [
     poster: "https://df41nzkzrv2ws.cloudfront.net/nugumi/reply-poster.jpg",
     alt: "Nugumi generating a full reply from a selected incoming message",
   },
+  {
+    eyebrow: "Ask Nugumi",
+    title: "Stuck on a foreign website? Ask what to click.",
+    body: "Press Control twice and ask Nugumi about what's on your screen. It can explain a foreign-language website, form, dialog, or app — and point to the button, field, or menu item you need. For when translation is not enough and you need to know what to do next.",
+    image: "/pet.png",
+    alt: "Nugumi reading a foreign-language website and pointing where to click",
+  },
 ];
 
 const valueProps = [
@@ -59,6 +68,11 @@ const valueProps = [
     icon: AppWindow,
     title: "Works in every Mac app.",
     body: "If macOS lets you select text in it, Nugumi works there. Telegram, Slack, Mail, Notes, PDFs, VS Code, Discord, Notion. No extensions to install. No per-app integration.",
+  },
+  {
+    icon: NavigationArrow,
+    title: "Guides you through foreign interfaces.",
+    body: "Nugumi doesn't just translate words. It helps you understand what a page wants from you, which button to click, and what step comes next.",
   },
   {
     icon: Lightning,
@@ -75,7 +89,15 @@ const valueProps = [
 const faqs = [
   {
     q: "How is this different from Google Translate or ChatGPT?",
-    a: "Google Translate only translates. ChatGPT can do everything, but it lives in another tab and asks for a fresh prompt every time. Nugumi is for the text workflow you repeat dozens of times a day: understand foreign text, make your writing sound native, and draft replies. All without leaving the app you're already in.",
+    a: "Google Translate only translates. ChatGPT can do everything, but it lives in another tab and asks for a fresh prompt every time. Nugumi is for the workflow you repeat dozens of times a day: understand foreign text, make your writing sound native, draft replies, and ask what to do on a confusing screen. All without leaving the app you're already in.",
+  },
+  {
+    q: "Can Nugumi understand websites or screenshots?",
+    a: "Yes. With a vision-capable model, Ask Nugumi can read what is on your screen and answer questions like 'Where do I click to submit this?' or 'What does this warning mean?' Nugumi guides you, but you stay in control.",
+  },
+  {
+    q: "Is my screen sent to the cloud?",
+    a: "Ask Nugumi captures your screen only when you ask a question. If you use a cloud vision model, the screenshot is sent to that provider. Text actions can run locally with Ollama when privacy matters.",
   },
   {
     q: "How do I pick which action runs?",
@@ -116,12 +138,13 @@ export default function Home() {
       <section id="top" className="hero">
         <p className="eyebrow">For global workers on Mac</p>
         <h1 className="hero-title">
-          Understand and reply in any language <em>without switching apps</em>.
+          Understand any language. <em>Know what to do next</em>.
         </h1>
         <p className="hero-lede">
-          Select text in Slack, Gmail, Notion, GitHub, PDFs, or any Mac app.
-          Nugumi translates it, rewrites your draft to sound native, or drafts a
-          reply — right where you are. No prompt loop. No copy-paste loop.
+          Nugumi is an AI layer over your Mac for non-native speakers. Translate
+          selected text, rewrite drafts to sound native, draft replies, or ask
+          Nugumi where to click on a foreign-language website — without
+          switching apps.
         </p>
 
         <div className="hero-cta">
@@ -164,6 +187,28 @@ export default function Home() {
             <span className="stat-label">{s.label}</span>
           </div>
         ))}
+      </section>
+
+      <section className="screen-guide">
+        <div className="screen-guide-copy">
+          <p className="eyebrow">Ask Nugumi</p>
+          <h2>Stuck on a foreign website?</h2>
+          <p>
+            Press Control twice and ask what the screen means. Nugumi can read a
+            form, dialog, checkout, visa page, bank portal, or app setting — then
+            point you toward the button or field you need.
+          </p>
+        </div>
+        <div className="prompt-cards" aria-label="Example Ask Nugumi questions">
+          <div className="prompt-card prompt-card-main">
+            <Eye size={22} weight="duotone" aria-hidden="true" />
+            <span>Where do I click to submit this application?</span>
+          </div>
+          <div className="prompt-card">What does this warning mean?</div>
+          <div className="prompt-card">Which field is missing?</div>
+          <div className="prompt-card">Is this asking me to pay?</div>
+          <div className="prompt-card">What should I do next?</div>
+        </div>
       </section>
 
       <section id="features" className="features">
@@ -210,9 +255,10 @@ export default function Home() {
           <h2>The AI layer for people who work between languages.</h2>
           <p>
             Global work happens in messy, mixed-language places: Slack threads,
-            Gmail replies, Notion docs, PDFs, GitHub issues, Telegram chats.
-            Nugumi lives in the gap between your selection and your cursor, so
-            understanding and answering happens in the app you&apos;re already in.
+            Gmail replies, Notion docs, PDFs, GitHub issues, Telegram chats, and
+            foreign websites. Nugumi lives in the gap between your selection,
+            your screen, and your cursor, so understanding and action happen in
+            the app you&apos;re already in.
           </p>
         </div>
 
@@ -230,7 +276,7 @@ export default function Home() {
       <section id="how" className="how">
         <div className="how-head">
           <p className="eyebrow">How it works</p>
-          <h2>Three steps. Zero ceremony.</h2>
+          <h2>Text or screen. One gesture.</h2>
         </div>
         <ol className="how-steps">
           <li>
@@ -256,6 +302,14 @@ export default function Home() {
               grammar, tone, idiom, snippets.
             </p>
           </li>
+          <li>
+            <span className="step-num">4</span>
+            <h3>Control twice → ask your screen.</h3>
+            <p>
+              Ask “Where do I click?”, “What does this warning mean?”, or “What
+              should I fill next?” Nugumi reads the screen and guides you.
+            </p>
+          </li>
         </ol>
       </section>
 
@@ -277,7 +331,7 @@ export default function Home() {
         </h2>
         <p>
           Free, no signup, no account. Try it on your next foreign work thread,
-          your next important English draft, your next unread reply.
+          important English draft, unread reply, or confusing website.
         </p>
         <div className="hero-cta">
           <a className="btn btn-primary" href="/download">
