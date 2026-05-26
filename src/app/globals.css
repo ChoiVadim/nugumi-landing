@@ -388,6 +388,72 @@ h3 {
   }
 }
 
+/* ---------- Moments ---------- */
+.moments {
+  width: min(100%, 1180px);
+  margin: 0 auto;
+  padding: clamp(64px, 9vw, 112px) clamp(20px, 4vw, 48px) 0;
+}
+
+.moments-head {
+  text-align: center;
+}
+
+.moments-head h2 {
+  margin: 20px auto 0;
+  max-width: 16ch;
+  font-size: clamp(38px, 5.2vw, 68px);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.02;
+}
+
+.moments-head p {
+  margin: 22px auto 0;
+  max-width: 56ch;
+  color: var(--text-muted);
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: clamp(16px, 1.2vw, 19px);
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.moments-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: clamp(36px, 6vw, 60px);
+}
+
+.moment-card {
+  padding: 30px 26px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--paper);
+  box-shadow: var(--shadow-card);
+}
+
+.moment-card h3 {
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: -0.014em;
+  line-height: 1.1;
+}
+
+.moment-card p {
+  margin: 14px 0 0;
+  color: var(--text-muted);
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: 15.5px;
+  line-height: 1.6;
+}
+
+@media (max-width: 820px) {
+  .moments-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ---------- Features ---------- */
 .features {
   width: min(100%, 1180px);

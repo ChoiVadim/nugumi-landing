@@ -9,10 +9,10 @@ import {
 } from "@phosphor-icons/react/dist/ssr";
 
 const heroActions = [
-  "Understand",
-  "Sound native",
-  "Reply",
-  "Know where to click",
+  "Before sending",
+  "Before replying",
+  "Before clicking",
+  "No copy-paste",
 ];
 
 const stats = [
@@ -20,7 +20,22 @@ const stats = [
   { value: "Any app", label: "Slack, Gmail, Notion, GitHub, PDFs, websites." },
   {
     value: "Local mode",
-    label: "for private messages and sensitive work.",
+    label: "for private text actions with Ollama.",
+  },
+];
+
+const moments = [
+  {
+    title: "Before sending",
+    body: "Does this sound too direct, too casual, or machine-translated? Nugumi helps you choose the low-risk professional phrasing for the situation.",
+  },
+  {
+    title: "Before replying",
+    body: "When you understand the words but not the right answer, Nugumi drafts a clear reply in your style so you can edit and send faster.",
+  },
+  {
+    title: "Before clicking",
+    body: "On foreign-language forms, dialogs, and websites, ask what the screen wants from you and which action is safe to take next.",
   },
 ];
 
@@ -35,14 +50,14 @@ const features = [
     alt: "Nugumi translating selected text in place",
   },
   {
-    eyebrow: "Sound native",
-    title: "Write in your language. Send it like a native.",
-    body: "Pick a target language once. Write the thought in the language that feels natural to you, select it, right-click, and Nugumi turns it into polished professional English, Korean, Japanese, or whatever you work in. Already wrote in the target language? Nugumi fixes grammar, tone, idiom, formatting, and snippets. No keyboard switching. No ChatGPT tab. No confidence tax.",
+    eyebrow: "Send with confidence",
+    title: "Write in your language. Send it professionally.",
+    body: "Pick a target language once. Write the thought in the language that feels natural to you, select it, right-click, and Nugumi turns it into clear professional English, Korean, Japanese, or whatever you work in. Already wrote in the target language? Nugumi fixes grammar, tone, idiom, formatting, and snippets so it fits the situation. No keyboard switching. No ChatGPT tab. No confidence tax.",
     image: "/pet.png",
     video: "https://df41nzkzrv2ws.cloudfront.net/nugumi/make-native.mp4",
     poster:
       "https://df41nzkzrv2ws.cloudfront.net/nugumi/make-native-poster.jpg",
-    alt: "Nugumi polishing a selected draft into native-sounding text",
+    alt: "Nugumi polishing a selected draft into professional text",
   },
   {
     eyebrow: "Reply",
@@ -68,7 +83,7 @@ const valueProps = [
   {
     icon: CursorClick,
     title: "Built for non-native professionals.",
-    body: "Nugumi is for people who work across languages every day: founders, engineers, support teams, recruiters, students abroad, immigrants, and remote workers. Understand the message. Answer clearly. Sound like yourself, not like a machine translation.",
+    body: "Nugumi is for people who work across languages every day: founders, engineers, support teams, recruiters, students abroad, immigrants, and remote workers. Understand the message. Answer clearly. Send with confidence instead of sounding like machine translation.",
   },
   {
     icon: AppWindow,
@@ -95,7 +110,7 @@ const valueProps = [
 const faqs = [
   {
     q: "How is this different from Google Translate or ChatGPT?",
-    a: "Google Translate only translates. ChatGPT can do everything, but it lives in another tab and asks for a fresh prompt every time. Nugumi is for the workflow you repeat dozens of times a day: understand foreign text, make your writing sound native, draft replies, and ask what to do on a confusing screen. All without leaving the app you're already in.",
+    a: "Google Translate only translates. ChatGPT can do everything, but it lives in another tab and asks for a fresh prompt every time. Nugumi is for the workflow you repeat dozens of times a day: understand foreign text, make your writing sound professional, draft replies, and ask what to do on a confusing screen. All without leaving the app you're already in.",
   },
   {
     q: "Can Nugumi understand websites or screenshots?",
@@ -119,7 +134,7 @@ const faqs = [
   },
   {
     q: "Is Nugumi free?",
-    a: "Yes. It's free to download, no signup, no account.",
+    a: "Yes. Nugumi is free during early beta. No signup, no account.",
   },
 ];
 
@@ -142,25 +157,25 @@ export default function Home() {
       </header>
 
       <section id="top" className="hero">
-        <p className="eyebrow">For global workers on Mac</p>
+        <p className="eyebrow">For non-native professionals on Mac</p>
         <h1 className="hero-title">
-          Stop being lost <em>in someone else&apos;s language</em>.
+          Confidence before you <em>send, reply, or click</em>.
         </h1>
         <p className="hero-lede">
-          Select any text on your Mac and Nugumi translates it, rewrites your
-          reply to sound native, or shows you exactly where to click — on any
-          foreign-language site, app, or dialog. Right where you&apos;re
-          working.
+          Know what to say or click in another language. Nugumi helps when
+          translation is not enough: understand context, choose a low-risk
+          reply, and know the safe next action — right inside the Mac app
+          you&apos;re using.
         </p>
 
         <div className="hero-cta">
           <a className="btn btn-primary" href="/download">
             <DownloadSimple size={20} weight="bold" aria-hidden="true" />
-            <span>Download for macOS</span>
+            <span>Download free for macOS</span>
           </a>
         </div>
         <p className="hero-meta">
-          Free · macOS 14+ · Apple Silicon &amp; Intel · Optional local mode
+          Early beta · No signup · macOS 14+ · Local text mode available
         </p>
 
         <div className="hero-chips" aria-label="What Nugumi does">
@@ -193,6 +208,25 @@ export default function Home() {
             <span className="stat-label">{s.label}</span>
           </div>
         ))}
+      </section>
+
+      <section className="moments" aria-labelledby="moments-title">
+        <div className="moments-head">
+          <p className="eyebrow">When translation is not enough</p>
+          <h2 id="moments-title">For the moments you don&apos;t want to guess.</h2>
+          <p>
+            You understand the words, but you&apos;re not sure what to reply, how
+            it sounds, or what button is safe to click.
+          </p>
+        </div>
+        <div className="moments-grid">
+          {moments.map((moment) => (
+            <article key={moment.title} className="moment-card">
+              <h3>{moment.title}</h3>
+              <p>{moment.body}</p>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section id="features" className="features">
@@ -279,7 +313,7 @@ export default function Home() {
           </li>
           <li>
             <span className="step-num">3</span>
-            <h3>Right-click → sound native.</h3>
+            <h3>Right-click → send with confidence.</h3>
             <p>
               Translates the selection into the language you set as target. If
               it&apos;s already in the target, Nugumi polishes it instead:
@@ -314,8 +348,9 @@ export default function Home() {
           Work across languages, <em>where you already are</em>.
         </h2>
         <p>
-          Free, no signup, no account. Try it on your next foreign work thread,
-          important English draft, unread reply, or confusing website.
+          Free during early beta. Try it on your next foreign work thread,
+          important English draft, unread reply, or confusing website — before
+          you send, reply, or click.
         </p>
         <div className="hero-cta">
           <a className="btn btn-primary" href="/download">
@@ -337,7 +372,7 @@ export default function Home() {
           </a>
         </div>
         <p className="footer-meta">
-          © {new Date().getFullYear()} Nugumi. MIT licensed.
+          © {new Date().getFullYear()} Nugumi.
         </p>
       </footer>
     </main>

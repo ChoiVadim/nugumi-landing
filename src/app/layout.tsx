@@ -20,9 +20,9 @@ const ebGaramond = EB_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "Nugumi · Understand any language and know what to do next",
+  title: "Nugumi · Confidence before you send, reply, or click",
   description:
-    "Nugumi is an AI layer over your Mac for non-native speakers. Translate selected text, sound native, draft replies, and ask where to click on foreign-language screens.",
+    "Nugumi is a Mac assistant for non-native professionals. Understand context, choose low-risk replies, and know what to say or click in another language.",
   icons: {
     icon: "/app-icon.png",
     shortcut: "/app-icon.png",
