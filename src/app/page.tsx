@@ -1,58 +1,42 @@
 import Image from "next/image";
 import {
   DownloadSimple,
-  Lock,
   AppWindow,
   Lightning,
   CursorClick,
   NavigationArrow,
+  Key,
+  Cpu,
+  Cloud,
 } from "@phosphor-icons/react/dist/ssr";
 
 const heroActions = [
-  "Before sending",
-  "Before replying",
-  "Before clicking",
-  "No copy-paste",
+  "Understand text",
+  "Rewrite drafts",
+  "Draft replies",
+  "Ask your screen",
 ];
 
 const stats = [
-  { value: "1 click", label: "to read, write, or ask your screen." },
-  { value: "Any app", label: "Slack, Gmail, Notion, GitHub, PDFs, websites." },
-  {
-    value: "Local mode",
-    label: "for private text actions with Ollama.",
-  },
-];
-
-const moments = [
-  {
-    title: "Before sending",
-    body: "Does this sound too direct, too casual, or machine-translated? Nugumi helps you choose the low-risk professional phrasing for the situation.",
-  },
-  {
-    title: "Before replying",
-    body: "When you understand the words but not the right answer, Nugumi drafts a clear reply in your style so you can edit and send faster.",
-  },
-  {
-    title: "Before clicking",
-    body: "On foreign-language forms, dialogs, and websites, ask what the screen wants from you and which action is safe to take next.",
-  },
+  { value: "Any app", label: "Slack, Gmail, Notion, PDFs, websites." },
+  { value: "4 actions", label: "understand, rewrite, reply, ask screen." },
+  { value: "3 setups", label: "ChatGPT, Ollama, or your own API key." },
 ];
 
 const features = [
   {
     eyebrow: "Understand",
-    title: "Read any language without leaving work.",
-    body: "Highlight a Slack message, Gmail thread, Notion doc, GitHub issue, PDF, or webpage. Left-click and Nugumi turns it into your language right where you are. If the text is already in your language, it explains jargon in plain words. Optional local mode keeps sensitive text on your Mac.",
+    title: "Read any language in any Mac app.",
+    body: "Select text in Slack, Gmail, Notion, GitHub, PDFs, or a website. Nugumi translates it into your language — or explains dense text in plain words.",
     image: "/translate.png",
     video: "https://df41nzkzrv2ws.cloudfront.net/nugumi/translate.mp4",
     poster: "https://df41nzkzrv2ws.cloudfront.net/nugumi/translate-poster.jpg",
     alt: "Nugumi translating selected text in place",
   },
   {
-    eyebrow: "Send with confidence",
-    title: "Write in your language. Send it professionally.",
-    body: "Pick a target language once. Write the thought in the language that feels natural to you, select it, right-click, and Nugumi turns it into clear professional English, Korean, Japanese, or whatever you work in. Already wrote in the target language? Nugumi fixes grammar, tone, idiom, formatting, and snippets so it fits the situation. No keyboard switching. No ChatGPT tab. No confidence tax.",
+    eyebrow: "Write",
+    title: "Write naturally. Send professionally.",
+    body: "Draft in the language that feels easiest. Nugumi rewrites it into clear work-ready English, Korean, Japanese, or your target language.",
     image: "/pet.png",
     video: "https://df41nzkzrv2ws.cloudfront.net/nugumi/make-native.mp4",
     poster:
@@ -61,8 +45,8 @@ const features = [
   },
   {
     eyebrow: "Reply",
-    title: "Reply across languages in your own voice.",
-    body: "Sometimes you don't want a translation. You want the answer. Select an incoming message, customer request, recruiting note, or work thread. Nugumi drafts a full reply in your style, using your snippets and dictionaries. Edit, then paste. Perfect for global workers who live in Slack, Gmail, Notion, Telegram, and GitHub all day.",
+    title: "Answer messages faster.",
+    body: "Select an incoming message and Nugumi drafts a reply in your style. Edit it, then send with confidence.",
     image: "/reply.png",
     video: "https://df41nzkzrv2ws.cloudfront.net/nugumi/reply.mp4",
     poster: "https://df41nzkzrv2ws.cloudfront.net/nugumi/reply-poster.jpg",
@@ -70,8 +54,8 @@ const features = [
   },
   {
     eyebrow: "Ask Nugumi",
-    title: "Stuck on a foreign website? Ask what to click.",
-    body: "Press Control twice and ask Nugumi about what's on your screen. It can explain a foreign-language website, form, dialog, or app — and point to the button, field, or menu item you need. For when translation is not enough and you need to know what to do next.",
+    title: "Know what to click on foreign screens.",
+    body: "Press Control twice and ask about the visible screen: warnings, forms, menus, websites, or buttons. Nugumi explains the context and next action.",
     image: "/pet.png",
     video: "https://df41nzkzrv2ws.cloudfront.net/nugumi/demo.mp4",
     poster: "https://df41nzkzrv2ws.cloudfront.net/nugumi/demo-poster.jpg",
@@ -82,59 +66,68 @@ const features = [
 const valueProps = [
   {
     icon: CursorClick,
-    title: "Built for non-native professionals.",
-    body: "Nugumi is for people who work across languages every day: founders, engineers, support teams, recruiters, students abroad, immigrants, and remote workers. Understand the message. Answer clearly. Send with confidence instead of sounding like machine translation.",
+    title: "Built for non-native work.",
+    body: "For people who write, read, and reply across languages every day.",
   },
   {
     icon: AppWindow,
-    title: "Works in every Mac app.",
-    body: "If macOS lets you select text in it, Nugumi works there. Telegram, Slack, Mail, Notes, PDFs, VS Code, Discord, Notion. No extensions to install. No per-app integration.",
+    title: "Works where you work.",
+    body: "No browser extension. No per-app setup. If you can select text, Nugumi can help.",
   },
   {
     icon: NavigationArrow,
-    title: "Guides you through foreign interfaces.",
-    body: "Nugumi doesn't just translate words. It helps you understand what a page wants from you, which button to click, and what step comes next.",
+    title: "More than translation.",
+    body: "It helps with meaning, tone, replies, and confusing interfaces.",
   },
   {
     icon: Lightning,
     title: "No prompt loop.",
-    body: "Most AI tools make you switch tabs, paste text, explain what you want, copy the result, and switch back. Nugumi already knows the action from your click, so the AI happens where the text already is.",
+    body: "Select text, click the action, get the result. No copy-paste into ChatGPT.",
+  },
+];
+
+const setupOptions = [
+  {
+    icon: Cloud,
+    title: "Use your ChatGPT subscription",
+    body: "Good default if you already pay for ChatGPT and want strong cloud models.",
   },
   {
-    icon: Lock,
-    title: "Run it locally, if you want.",
-    body: "Optional local mode: pair Nugumi with Ollama and the model runs entirely on your Mac. Nothing leaves it. Use it when privacy matters.",
+    icon: Cpu,
+    title: "Run locally with Ollama",
+    body: "Best when privacy or cost matters. Text actions can stay on your Mac.",
+  },
+  {
+    icon: Key,
+    title: "Connect your own API key",
+    body: "Use direct cloud providers when you want control over model, speed, and billing.",
   },
 ];
 
 const faqs = [
   {
     q: "How is this different from Google Translate or ChatGPT?",
-    a: "Google Translate only translates. ChatGPT can do everything, but it lives in another tab and asks for a fresh prompt every time. Nugumi is for the workflow you repeat dozens of times a day: understand foreign text, make your writing sound professional, draft replies, and ask what to do on a confusing screen. All without leaving the app you're already in.",
+    a: "Google Translate mostly translates. ChatGPT is powerful, but it lives in another tab. Nugumi sits next to the text or screen you are already working with and runs the right action from a click.",
+  },
+  {
+    q: "Where does Nugumi run?",
+    a: "You choose: ChatGPT subscription, local Ollama, or your own API key. Use Ollama for private local text actions. Use ChatGPT or an API key for stronger cloud models and vision.",
   },
   {
     q: "Can Nugumi understand websites or screenshots?",
-    a: "Yes. With a vision-capable model, Ask Nugumi can read what is on your screen and answer questions like 'Where do I click to submit this?' or 'What does this warning mean?' Nugumi guides you, but you stay in control.",
+    a: "Yes. Ask Nugumi can read the visible screen when you explicitly ask a question like “What does this warning mean?” or “Where do I click?”",
   },
   {
     q: "Is my screen sent to the cloud?",
-    a: "Ask Nugumi captures your screen only when you ask a question. If you use a cloud vision model, the screenshot is sent to that provider. Text actions can run locally with Ollama when privacy matters.",
-  },
-  {
-    q: "How do I pick which action runs?",
-    a: "Both clicks are translators. They just go to different languages. Left-click translates to your native language. Right-click translates to your target language (the one you set in preferences). If your selection is already in the destination language, the click switches mode: left explains jargon in plain words, right polishes grammar, tone, and snippets. Same gesture, different direction, no dropdowns.",
-  },
-  {
-    q: "Where does it run?",
-    a: "You can run it locally via Ollama. Nugumi walks you through setup on first launch. In local mode, the model lives on your Mac and your text stays with you.",
+    a: "Only when you ask a screen question and use a cloud vision model. Text actions can run locally with Ollama.",
   },
   {
     q: "Which apps does it work in?",
-    a: "Every macOS app with selectable text: Telegram, Slack, Safari, Chrome, Notion, Notes, Mail, VS Code, PDFs in Preview, web pages, Discord, Messages. If the OS lets you select it, Nugumi reads it.",
+    a: "Every macOS app with selectable text: Slack, Gmail, Safari, Chrome, Notion, Notes, Mail, VS Code, PDFs, Discord, Telegram, and more.",
   },
   {
     q: "Is Nugumi free?",
-    a: "Yes. Nugumi is free during early beta. No signup, no account.",
+    a: "Yes. Nugumi is free during early beta. You choose the model setup and any provider costs.",
   },
 ];
 
@@ -148,7 +141,7 @@ export default function Home() {
         </a>
         <nav className="topnav" aria-label="Primary">
           <a href="#features">Actions</a>
-          <a href="#why">Approach</a>
+          <a href="#setup">Setup</a>
           <a href="#faq">FAQ</a>
           <a className="topnav-cta" href="/download">
             Download
@@ -175,7 +168,7 @@ export default function Home() {
           </a>
         </div>
         <p className="hero-meta">
-          Early beta · No signup · macOS 14+ · Local text mode available
+          Early beta · No signup · macOS 14+ · ChatGPT, Ollama, or API key
         </p>
 
         <div className="hero-chips" aria-label="What Nugumi does">
@@ -208,25 +201,6 @@ export default function Home() {
             <span className="stat-label">{s.label}</span>
           </div>
         ))}
-      </section>
-
-      <section className="moments" aria-labelledby="moments-title">
-        <div className="moments-head">
-          <p className="eyebrow">When translation is not enough</p>
-          <h2 id="moments-title">For the moments you don&apos;t want to guess.</h2>
-          <p>
-            You understand the words, but you&apos;re not sure what to reply, how
-            it sounds, or what button is safe to click.
-          </p>
-        </div>
-        <div className="moments-grid">
-          {moments.map((moment) => (
-            <article key={moment.title} className="moment-card">
-              <h3>{moment.title}</h3>
-              <p>{moment.body}</p>
-            </article>
-          ))}
-        </div>
       </section>
 
       <section id="features" className="features">
@@ -270,13 +244,10 @@ export default function Home() {
       <section id="why" className="why">
         <div className="why-head">
           <p className="eyebrow eyebrow-dark">Approach</p>
-          <h2>The AI layer for people who work between languages.</h2>
+          <h2>The AI layer between your cursor and language work.</h2>
           <p>
-            Global work happens in messy, mixed-language places: Slack threads,
-            Gmail replies, Notion docs, PDFs, GitHub issues, Telegram chats, and
-            foreign websites. Nugumi lives in the gap between your selection,
-            your screen, and your cursor, so understanding and action happen in
-            the app you&apos;re already in.
+            Nugumi is not another chat box. It turns the text you selected or
+            the screen you asked about into the next useful action.
           </p>
         </div>
 
@@ -294,41 +265,50 @@ export default function Home() {
       <section id="how" className="how">
         <div className="how-head">
           <p className="eyebrow">How it works</p>
-          <h2>Text or screen. One gesture.</h2>
+          <h2>One small companion. Four actions.</h2>
         </div>
         <ol className="how-steps">
           <li>
             <span className="step-num">1</span>
-            <h3>Highlight any text.</h3>
-            <p>In any Mac app. Chat, mail, PDF, browser, code editor.</p>
+            <h3>Select text.</h3>
+            <p>In any Mac app: chat, mail, PDF, browser, or code editor.</p>
           </li>
           <li>
             <span className="step-num">2</span>
-            <h3>Left-click → understand.</h3>
-            <p>
-              Translates the selection into the language you set as native. If
-              it&apos;s already in your language, Nugumi explains the jargon in
-              plain words instead.
-            </p>
+            <h3>Left-click to understand.</h3>
+            <p>Translate into your language or simplify dense writing.</p>
           </li>
           <li>
             <span className="step-num">3</span>
-            <h3>Right-click → send with confidence.</h3>
-            <p>
-              Translates the selection into the language you set as target. If
-              it&apos;s already in the target, Nugumi polishes it instead:
-              grammar, tone, idiom, snippets.
-            </p>
+            <h3>Right-click to rewrite.</h3>
+            <p>Make your draft clear, natural, and ready to send.</p>
           </li>
           <li>
             <span className="step-num">4</span>
-            <h3>Control twice → ask your screen.</h3>
-            <p>
-              Ask “Where do I click?”, “What does this warning mean?”, or “What
-              should I fill next?” Nugumi reads the screen and guides you.
-            </p>
+            <h3>Control twice to ask.</h3>
+            <p>Ask what a screen means and what to click next.</p>
           </li>
         </ol>
+      </section>
+
+      <section id="setup" className="setup">
+        <div className="setup-head">
+          <p className="eyebrow">Model setup</p>
+          <h2>Use Nugumi the way you already use AI.</h2>
+          <p>
+            Start with the setup that matches your privacy, quality, and cost
+            needs. You can change it later.
+          </p>
+        </div>
+        <div className="setup-grid">
+          {setupOptions.map(({ icon: Icon, title, body }) => (
+            <article key={title} className="setup-card">
+              <Icon size={24} weight="duotone" aria-hidden="true" />
+              <h3>{title}</h3>
+              <p>{body}</p>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section id="faq" className="faq">
@@ -348,9 +328,8 @@ export default function Home() {
           Work across languages, <em>where you already are</em>.
         </h2>
         <p>
-          Free during early beta. Try it on your next foreign work thread,
-          important English draft, unread reply, or confusing website — before
-          you send, reply, or click.
+          Try Nugumi on your next foreign work thread, important draft, unread
+          reply, or confusing website.
         </p>
         <div className="hero-cta">
           <a className="btn btn-primary" href="/download">
@@ -367,9 +346,7 @@ export default function Home() {
         </div>
         <div className="footer-links">
           <a href="/download">Download</a>
-          <a href="https://ollama.com" target="_blank" rel="noreferrer">
-            Powered by Ollama
-          </a>
+          <a href="#setup">Model setup</a>
         </div>
         <p className="footer-meta">
           © {new Date().getFullYear()} Nugumi.
