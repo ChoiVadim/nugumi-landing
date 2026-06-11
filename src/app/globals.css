@@ -351,9 +351,15 @@ h3 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
+  appearance: none;
+  -webkit-appearance: none;
+  padding: 0;
   border: 1px solid rgba(255, 255, 255, 0.3);
   background: rgba(20, 22, 26, 0.64);
   color: #fff;
+  font: inherit;
+  line-height: 0;
   cursor: pointer;
   box-shadow: 0 18px 42px -20px rgba(0, 0, 0, 0.62);
   backdrop-filter: blur(16px);
@@ -373,10 +379,22 @@ h3 {
   transform: translate(-50%, -50%);
 }
 
-.hero-play-button svg {
+.hero-play-button .hero-icon {
   width: 42%;
   height: 42%;
-  margin-left: 5%;
+}
+
+.hero-icon {
+  display: block;
+  flex: 0 0 auto;
+}
+
+.hero-icon-play {
+  transform: translateX(5%);
+}
+
+.hero-icon-replay {
+  transform: translateX(1%);
 }
 
 .hero-sound-toggle {
@@ -387,7 +405,7 @@ h3 {
   border-radius: 999px;
 }
 
-.hero-sound-toggle svg {
+.hero-sound-toggle .hero-icon {
   width: 21px;
   height: 21px;
 }

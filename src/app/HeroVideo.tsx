@@ -5,6 +5,7 @@ import { useRef, useState } from "react";
 function SpeakerIcon({ muted }: { muted: boolean }) {
   return (
     <svg
+      className="hero-icon hero-icon-speaker"
       aria-hidden="true"
       viewBox="0 0 24 24"
       fill="none"
@@ -54,6 +55,7 @@ function SpeakerIcon({ muted }: { muted: boolean }) {
 function PlayIcon() {
   return (
     <svg
+      className="hero-icon hero-icon-play"
       aria-hidden="true"
       viewBox="0 0 24 24"
       fill="none"
@@ -70,6 +72,7 @@ function PlayIcon() {
 function ReplayIcon() {
   return (
     <svg
+      className="hero-icon hero-icon-replay"
       aria-hidden="true"
       viewBox="0 0 24 24"
       fill="none"
