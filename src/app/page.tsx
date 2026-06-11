@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { HeroVideo } from "./HeroVideo";
 import {
   DownloadSimple,
   AppWindow,
@@ -179,19 +180,7 @@ export default function Home() {
           ))}
         </div>
 
-        <figure className="hero-shot">
-          <video
-            className="hero-video"
-            src="https://df41nzkzrv2ws.cloudfront.net/nugumi/demo.mp4"
-            poster="https://df41nzkzrv2ws.cloudfront.net/nugumi/demo-poster.jpg"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            aria-label="Nugumi running an AI action on selected text"
-          />
-        </figure>
+        <HeroVideo />
       </section>
 
       <section className="stats">

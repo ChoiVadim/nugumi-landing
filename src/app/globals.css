@@ -326,6 +326,7 @@ h3 {
 }
 
 .hero-shot {
+  position: relative;
   margin: clamp(48px, 7vw, 80px) 0 0;
   width: 100%;
   border: 1px solid var(--line);
@@ -342,6 +343,44 @@ h3 {
   display: block;
   width: 100%;
   height: auto;
+}
+
+.hero-sound-toggle {
+  position: absolute;
+  right: clamp(12px, 2vw, 22px);
+  bottom: clamp(12px, 2vw, 22px);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 0 16px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: var(--radius-pill);
+  background: rgba(20, 22, 26, 0.72);
+  color: #fff;
+  font: inherit;
+  font-size: 13.5px;
+  font-weight: 650;
+  letter-spacing: -0.003em;
+  cursor: pointer;
+  box-shadow: 0 12px 28px -14px rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition:
+    transform 160ms ease,
+    background-color 160ms ease,
+    border-color 160ms ease;
+}
+
+.hero-sound-toggle:hover {
+  transform: translateY(-1px);
+  background: rgba(15, 118, 110, 0.88);
+  border-color: rgba(255, 255, 255, 0.42);
+}
+
+.hero-sound-toggle:focus-visible {
+  outline: 3px solid rgba(62, 179, 163, 0.6);
+  outline-offset: 3px;
 }
 
 /* ---------- Stats ---------- */
