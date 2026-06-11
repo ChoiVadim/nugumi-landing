@@ -67,18 +67,49 @@ function PlayIcon() {
   );
 }
 
+function ReplayIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M18.2 9.2C17.1 7.1 14.9 5.75 12.35 5.75C8.75 5.75 5.85 8.65 5.85 12.25C5.85 15.85 8.75 18.75 12.35 18.75C15 18.75 17.25 17.15 18.25 14.85"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+      />
+      <path
+        d="M18.95 5.75V9.85H14.85"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export function HeroVideo() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [soundEnabled, setSoundEnabled] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [hasEnded, setHasEnded] = useState(false);
 
   const playWithSound = async () => {
     const video = videoRef.current;
     if (!video) return;
 
+    if (hasEnded) {
+      video.currentTime = 0;
+    }
+
     video.muted = false;
     video.volume = 1;
     setSoundEnabled(true);
+    setHasEnded(false);
 
     try {
       await video.play();
@@ -108,6 +139,11 @@ export function HeroVideo() {
     setSoundEnabled(nextSoundEnabled);
   };
 
+  const handleEnded = () => {
+    setIsPlaying(false);
+    setHasEnded(true);
+  };
+
   return (
     <figure className="hero-shot">
       <video
@@ -116,22 +152,25 @@ export function HeroVideo() {
         src="/intro.mov"
         poster="/intro-poster.jpg"
         muted
-        loop
         playsInline
         preload="metadata"
         aria-label="Nugumi intro video with sound"
         onClick={pauseVideo}
-        onPlay={() => setIsPlaying(true)}
+        onPlay={() => {
+          setIsPlaying(true);
+          setHasEnded(false);
+        }}
         onPause={() => setIsPlaying(false)}
+        onEnded={handleEnded}
       />
       {!isPlaying && (
         <button
           type="button"
           className="hero-play-button"
           onClick={playWithSound}
-          aria-label="Play intro video with sound"
+          aria-label={hasEnded ? "Replay intro video with sound" : "Play intro video with sound"}
         >
-          <PlayIcon />
+          {hasEnded ? <ReplayIcon /> : <PlayIcon />}
         </button>
       )}
       <button
