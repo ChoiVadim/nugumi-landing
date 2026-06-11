@@ -70,6 +70,7 @@ function PlayIcon() {
 export function HeroVideo() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [soundEnabled, setSoundEnabled] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   const playWithSound = async () => {
     const video = videoRef.current;
@@ -81,13 +82,23 @@ export function HeroVideo() {
 
     try {
       await video.play();
+      setIsPlaying(true);
     } catch {
       video.muted = true;
       setSoundEnabled(false);
+      setIsPlaying(false);
     }
   };
 
-  const toggleSound = async () => {
+  const pauseVideo = () => {
+    const video = videoRef.current;
+    if (!video || video.paused) return;
+
+    video.pause();
+    setIsPlaying(false);
+  };
+
+  const toggleSound = () => {
     const video = videoRef.current;
     if (!video) return;
 
@@ -95,15 +106,6 @@ export function HeroVideo() {
     video.muted = !nextSoundEnabled;
     video.volume = 1;
     setSoundEnabled(nextSoundEnabled);
-
-    if (nextSoundEnabled && video.paused) {
-      try {
-        await video.play();
-      } catch {
-        video.muted = true;
-        setSoundEnabled(false);
-      }
-    }
   };
 
   return (
@@ -113,14 +115,16 @@ export function HeroVideo() {
         className="hero-video"
         src="/intro.mov"
         poster="/intro-poster.jpg"
-        autoPlay
         muted
         loop
         playsInline
         preload="metadata"
         aria-label="Nugumi intro video with sound"
+        onClick={pauseVideo}
+        onPlay={() => setIsPlaying(true)}
+        onPause={() => setIsPlaying(false)}
       />
-      {!soundEnabled && (
+      {!isPlaying && (
         <button
           type="button"
           className="hero-play-button"
