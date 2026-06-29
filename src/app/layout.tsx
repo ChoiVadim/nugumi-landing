@@ -50,15 +50,39 @@ const ebGaramond = EB_Garamond({
   style: ["normal", "italic"],
 });
 
+const TITLE = "Nugumi · Confidence before you hit send";
+const DESCRIPTION =
+  "Nugumi is a Mac assistant for non-native professionals. Read, reply, and polish your words so they come out natural, error-free, and right in tone.";
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE),
-  title: "Nugumi · Confidence before you send, reply, or click",
-  description:
-    "Nugumi is a Mac assistant for non-native professionals. Read, reply, and polish your words so they come out natural, error-free, and right in tone.",
+  title: TITLE,
+  description: DESCRIPTION,
   icons: {
     icon: "/app-icon.png",
     shortcut: "/app-icon.png",
     apple: "/app-icon.png",
+  },
+  openGraph: {
+    type: "website",
+    url: SITE,
+    siteName: "Nugumi",
+    title: TITLE,
+    description: DESCRIPTION,
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "Nugumi — Confidence before you hit send",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+    images: ["/og.png"],
   },
 };
 

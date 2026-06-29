@@ -662,16 +662,16 @@ h3 {
 
 .feature-eyebrow {
   display: inline-block;
-  margin: 0 0 24px;
-  padding: 5px 13px;
+  margin: 0 0 20px;
+  padding: 3px 9px;
   border-radius: var(--radius-pill);
   background: var(--moss-soft);
   border: 1px solid rgba(116, 224, 207, 0.28);
   color: var(--moss-bright);
   font-family: var(--font-geist-mono), monospace;
-  font-size: 11.5px;
+  font-size: 8px;
   font-weight: 600;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
