@@ -171,6 +171,7 @@ export default function Home() {
           <a href="#features">Actions</a>
           <a href="#setup">Setup</a>
           <a href="#faq">FAQ</a>
+          <a href="/guides">Guides</a>
           <a className="topnav-cta" href="/download">
             Download
           </a>
@@ -383,6 +384,7 @@ export default function Home() {
         </div>
         <div className="footer-links">
           <a href="/download">Download</a>
+          <a href="/guides">Guides</a>
           <a href="#setup">Model setup</a>
           <a
             href="https://github.com/ChoiVadim/nugumi"
