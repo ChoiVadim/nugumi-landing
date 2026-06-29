@@ -22,7 +22,7 @@ const ebGaramond = EB_Garamond({
 export const metadata: Metadata = {
   title: "Nugumi · Confidence before you send, reply, or click",
   description:
-    "Nugumi is a Mac assistant for non-native professionals. Understand context, choose low-risk replies, and know what to say or click in another language.",
+    "Nugumi is a Mac assistant for non-native professionals. Read, reply, and polish your words so they come out natural, error-free, and right in tone.",
   icons: {
     icon: "/app-icon.png",
     shortcut: "/app-icon.png",

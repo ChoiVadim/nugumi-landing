@@ -14,25 +14,39 @@
  *   medium weight (500), tight letter-spacing on headings
  */
 :root {
-  --ink: #14161a;
-  --ink-2: #1c1f24;
-  --ink-soft: #2a2d33;
-  --cream: #f6efe2;
-  --cream-2: #fbf6ec;
-  --paper: #ffffff;
-  --line: #e4dccb;
-  --line-strong: #d4caad;
-  --text: #16171a;
-  --text-muted: #5d5b54;
-  --text-onink: #f5efe2;
-  --text-onink-muted: #b6b1a4;
-  --moss: #0f766e;
-  --moss-strong: #0a5f59;
-  --moss-soft: #d6ebe5;
-  --moss-bright: #3eb3a3;
+  /* dark accents kept for small high-contrast bits (step number, logo tile) */
+  --ink: #0c1a15;
+  --ink-2: #122620;
+  --ink-soft: #1a332b;
 
-  --shadow-card: 0 24px 60px -28px rgba(15, 17, 22, 0.28);
-  --shadow-cta: 0 14px 32px -10px rgba(15, 118, 110, 0.45);
+  /* glass surfaces: translucent frost over the wallpaper */
+  --paper: rgba(255, 255, 255, 0.1);
+  --paper-strong: rgba(255, 255, 255, 0.16);
+  --cream: #0c1a15; /* solid fallback color under the wallpaper */
+  --cream-2: rgba(255, 255, 255, 0.14);
+
+  /* glass hairlines + the signature Apple top-edge highlight */
+  --line: rgba(255, 255, 255, 0.18);
+  --line-strong: rgba(255, 255, 255, 0.3);
+  --glass-blur: saturate(160%) blur(20px);
+  --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+
+  /* light text on the dark-green glass */
+  --text: #f1f6f3;
+  --text-muted: rgba(235, 244, 240, 0.72);
+  --text-onink: #f4faf7;
+  --text-onink-muted: rgba(235, 244, 240, 0.72);
+
+  /* brightened teal so the accent reads on dark glass */
+  --moss: #5fd2c0;
+  --moss-strong: #2bb6a3;
+  --moss-soft: rgba(95, 210, 192, 0.16);
+  --moss-bright: #74e0cf;
+
+  --shadow-card:
+    0 24px 60px -28px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  --shadow-cta: 0 16px 36px -12px rgba(0, 0, 0, 0.5);
   --radius-lg: 22px;
   --radius-pill: 999px;
 }
@@ -54,7 +68,17 @@ html {
 body {
   margin: 0;
   min-height: 100dvh;
-  background: var(--cream);
+  /* wallpaper fixed to the viewport so every glass section floats over one
+     backdrop; dark-green scrim on top unifies contrast for white text. */
+  background:
+    linear-gradient(
+        180deg,
+        rgba(11, 26, 21, 0.5) 0%,
+        rgba(7, 17, 13, 0.68) 100%
+      )
+      center / cover fixed,
+    url("/glass-bg.webp") center / cover no-repeat fixed,
+    var(--cream);
   color: var(--text);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   font-size: 16px;
@@ -83,6 +107,24 @@ h3 {
   letter-spacing: -0.012em;
   line-height: 1.04;
   margin: 0;
+  text-shadow: 0 1px 24px rgba(0, 0, 0, 0.28);
+}
+
+/* ---------- Apple-style liquid glass (shared frost) ---------- */
+.eyebrow,
+.eyebrow-dark,
+.chip,
+.feature-eyebrow,
+.btn-ghost,
+.hero-shot,
+.feature-shot,
+.moment-card,
+.how-steps li,
+.setup-card,
+.faq-item,
+.why-card {
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
 }
 
 .page {
@@ -102,12 +144,10 @@ h3 {
   width: min(100% - 24px, 1120px);
   margin: 14px auto 0;
   padding: 8px 8px 8px 18px;
-  background: color-mix(in srgb, var(--cream) 76%, transparent);
-  backdrop-filter: saturate(180%) blur(18px);
-  -webkit-backdrop-filter: saturate(180%) blur(18px);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-pill);
-  box-shadow: 0 16px 36px -22px rgba(15, 17, 22, 0.28);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .brand {
@@ -145,19 +185,29 @@ h3 {
   gap: 6px;
   padding: 9px 16px;
   border-radius: var(--radius-pill);
-  background: var(--ink);
-  color: var(--text-onink);
+  background: linear-gradient(
+    180deg,
+    rgba(95, 210, 192, 0.42),
+    rgba(15, 118, 110, 0.5)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  color: #fff;
   font-weight: 600;
   font-size: 13.5px;
   letter-spacing: -0.003em;
+  box-shadow: var(--glass-highlight);
   transition:
     background-color 160ms ease,
     transform 160ms ease;
 }
 
 .topnav-cta:hover {
-  background: var(--moss);
-  color: var(--text-onink);
+  background: linear-gradient(
+    180deg,
+    rgba(116, 224, 207, 0.55),
+    rgba(43, 182, 163, 0.6)
+  );
+  color: #fff;
 }
 
 @media (max-width: 720px) {
@@ -263,14 +313,29 @@ h3 {
 }
 
 .btn-primary {
-  background: var(--ink);
-  color: var(--text-onink);
-  box-shadow: 0 18px 36px -16px rgba(15, 17, 22, 0.55);
+  background: linear-gradient(
+    180deg,
+    rgba(95, 210, 192, 0.5),
+    rgba(15, 118, 110, 0.62)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #fff;
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  box-shadow:
+    0 18px 40px -14px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
 .btn-primary:hover {
-  background: var(--moss);
-  box-shadow: var(--shadow-cta);
+  background: linear-gradient(
+    180deg,
+    rgba(120, 230, 214, 0.6),
+    rgba(43, 182, 163, 0.72)
+  );
+  box-shadow:
+    0 22px 48px -14px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 .btn-ghost {
@@ -305,6 +370,18 @@ h3 {
   font-size: 13.5px;
 }
 
+.hero-meta-link {
+  color: var(--moss);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: color 160ms ease;
+}
+
+.hero-meta-link:hover {
+  color: var(--moss-bright);
+}
+
 .hero-chips {
   display: flex;
   flex-wrap: wrap;
@@ -319,10 +396,11 @@ h3 {
   padding: 7px 14px;
   border: 1px solid var(--line);
   border-radius: var(--radius-pill);
-  background: rgba(255, 255, 255, 0.6);
+  background: var(--paper);
   color: var(--text);
   font-size: 13.5px;
   font-weight: 500;
+  box-shadow: var(--glass-highlight);
 }
 
 .hero-shot {
@@ -557,6 +635,19 @@ h3 {
   align-items: center;
 }
 
+/* Lift the copy (eyebrow + heading) to the top of the media so the eyebrow
+   pill sits up top instead of floating in the vertical center. */
+.feature-copy {
+  align-self: start;
+  padding-top: clamp(4px, 1.5vw, 18px);
+  text-align: center;
+}
+
+.feature-copy p {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .feature-flip {
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
 }
@@ -574,8 +665,9 @@ h3 {
   margin: 0 0 24px;
   padding: 5px 13px;
   border-radius: var(--radius-pill);
-  background: rgba(15, 118, 110, 0.1);
-  color: var(--moss);
+  background: var(--moss-soft);
+  border: 1px solid rgba(116, 224, 207, 0.28);
+  color: var(--moss-bright);
   font-family: var(--font-geist-mono), monospace;
   font-size: 11.5px;
   font-weight: 600;
@@ -631,9 +723,8 @@ h3 {
   }
 }
 
-/* ---------- Why (dark section) ---------- */
+/* ---------- Why (glass cards over the wallpaper) ---------- */
 .why {
-  background: var(--ink);
   color: var(--text-onink);
   padding: clamp(80px, 11vw, 140px) clamp(20px, 4vw, 48px);
 }
@@ -676,9 +767,10 @@ h3 {
   flex-direction: column;
   gap: 14px;
   padding: 28px 24px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  background: var(--ink-2);
+  background: var(--paper);
+  box-shadow: var(--shadow-card);
   transition:
     transform 200ms ease,
     border-color 200ms ease,
@@ -687,8 +779,8 @@ h3 {
 
 .why-card:hover {
   transform: translateY(-3px);
-  background: var(--ink-soft);
-  border-color: rgba(62, 179, 163, 0.45);
+  background: var(--paper-strong);
+  border-color: rgba(116, 224, 207, 0.5);
 }
 
 .why-card svg {
@@ -757,6 +849,7 @@ h3 {
   border-radius: var(--radius-lg);
   background: var(--paper);
   box-shadow: var(--shadow-card);
+  text-align: center;
 }
 
 .step-num {
@@ -766,8 +859,14 @@ h3 {
   width: 34px;
   height: 34px;
   border-radius: 999px;
-  background: var(--ink);
-  color: var(--text-onink);
+  background: linear-gradient(
+    180deg,
+    rgba(95, 210, 192, 0.42),
+    rgba(15, 118, 110, 0.5)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: var(--glass-highlight);
+  color: #fff;
   font-family: var(--font-serif), serif;
   font-size: 16px;
   font-weight: 500;
@@ -818,8 +917,7 @@ h3 {
 .setup {
   width: min(100%, 1180px);
   margin: 0 auto;
-  padding: clamp(8px, 2vw, 24px) clamp(20px, 4vw, 48px)
-    clamp(72px, 10vw, 120px);
+  padding: clamp(8px, 2vw, 24px) clamp(20px, 4vw, 48px) clamp(72px, 10vw, 120px);
 }
 
 .setup-head {
@@ -915,7 +1013,7 @@ h3 {
 }
 
 .faq-item[open] {
-  border-color: var(--ink);
+  border-color: rgba(255, 255, 255, 0.45);
 }
 
 .faq-item summary {
@@ -960,7 +1058,6 @@ h3 {
 
 /* ---------- Closer ---------- */
 .closer {
-  background: var(--ink);
   color: var(--text-onink);
   text-align: center;
   padding: clamp(80px, 11vw, 140px) clamp(20px, 4vw, 48px);
@@ -990,14 +1087,104 @@ h3 {
   line-height: 1.6;
 }
 
-.closer .btn-primary {
-  background: var(--cream);
-  color: var(--ink);
+/* closer CTA inherits the shared green-glass .btn-primary */
+
+/* ---------- Testimonials ---------- */
+.testimonials {
+  width: min(100%, 1180px);
+  margin: 0 auto;
+  padding: clamp(56px, 8vw, 96px) clamp(20px, 4vw, 48px);
 }
 
-.closer .btn-primary:hover {
+.testimonials-head {
+  text-align: center;
+}
+
+.testimonials-head h2 {
+  margin: 20px auto 0;
+  max-width: 16ch;
+  font-size: clamp(34px, 4.6vw, 60px);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.02;
+}
+
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: clamp(36px, 6vw, 56px);
+}
+
+.testimonial-card {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  justify-content: space-between;
+  padding: 30px 28px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
   background: var(--paper);
-  box-shadow: 0 18px 40px -12px rgba(62, 179, 163, 0.35);
+  box-shadow: var(--shadow-card);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+}
+
+.testimonial-card blockquote {
+  margin: 0;
+  font-family: var(--font-serif), serif;
+  font-size: clamp(19px, 1.6vw, 23px);
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.012em;
+  color: var(--text);
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.testimonial-avatar {
+  display: block;
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.testimonial-avatar img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.testimonial-author-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.testimonial-name {
+  font-weight: 600;
+  font-size: 14.5px;
+  color: var(--text);
+}
+
+.testimonial-role {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+@media (max-width: 760px) {
+  .testimonial-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ---------- Footer ---------- */
